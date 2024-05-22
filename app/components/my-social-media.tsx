@@ -6,7 +6,7 @@ import { MyMedium } from './my-medium';
 
 export function MySocialMedia() {
   return (
-    <div className='w-full flex justify-between'>
+    <div className='w-full flex justify-between overflow-x-auto'>
       <MyLinkedIn />
       <MyMedium />
       <MyGithub />

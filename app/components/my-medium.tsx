@@ -10,7 +10,7 @@ export function MyMedium() {
       href={Config.mediumUrl}
       target='_blank'
     >
-      <MediumIcon/>
+      <MediumIcon className='size-4 md:size-6'/>
       <span>Medium</span>
     </Link>
   )

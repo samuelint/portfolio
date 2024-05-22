@@ -9,7 +9,7 @@ export function MyLinkedIn() {
       href={Config.linkedinUrl}
       target='_blank'
     >
-      <LinkedInIcon/>
+      <LinkedInIcon className='size-4 md:size-6'/>
       <span>LinkedIn</span>
     </Link>
   )

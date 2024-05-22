@@ -11,8 +11,8 @@ export function MyTwitter() {
       href={Config.twitterUrl}
       target='_blank'
     >
-      <TwitterIcon/>
-      <span>X (Twitter)</span>
+      <TwitterIcon className='size-4 md:size-6' />
+      <span>Twitter</span>
     </Link>
   )
 }

@@ -9,7 +9,7 @@ export function MyGithub() {
       href={Config.githubUrl}
       target='_blank'
     >
-      <GithubIcon/>
+      <GithubIcon className='size-4 md:size-6'/>
       <span>Github</span>
     </Link>
   )
