@@ -148,3 +148,19 @@ table {
 .title {
   text-wrap: balance;
 }
+
+.button {
+  @apply rounded-md px-3.5 py-2.5 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 flex items-center space-x-2;
+}
+
+.button-primary {
+  @apply text-white bg-slate-500 hover:bg-slate-400 focus-visible:outline-slate-500;
+}
+
+.button-secondary {
+  @apply text-black bg-slate-50 hover:bg-slate-100 focus-visible:outline-slate-50;
+}
+
+.title {
+  @apply font-semibold text-2xl tracking-tighter mb-8;
+}

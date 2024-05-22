@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
-import { getBlogPost, getBlogPosts } from 'app/blog/utils'
+import { getProjectPost, getProjectPosts } from '../utils'
 import { generateMDXMetadata, MDXArticle } from 'lib/mdx'
 
 export async function generateStaticParams() {
-  let posts = getBlogPosts()
+  let posts = getProjectPosts()
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -11,13 +11,13 @@ export async function generateStaticParams() {
 }
 
 export function generateMetadata({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+  let post = getProjectPost(params.slug)
 
-  return generateMDXMetadata({ data: post, slugPrefix: 'blog' })
+  return generateMDXMetadata({ data: post, slugPrefix: 'projects' })
 }
 
 export default function Blog({ params }) {
-  let post = getBlogPost(params.slug)
+  let post = getProjectPost(params.slug)
 
   if (!post) {
     notFound()
