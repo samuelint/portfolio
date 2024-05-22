@@ -1,9 +1,13 @@
+import { Config } from 'app/config'
 import { getMDXData } from 'lib/mdx'
 import path from 'path'
 
 
 export function getProjectPosts() {
-  return getMDXData(path.join(process.cwd(), 'app', 'projects', 'posts'))
+  return getMDXData({
+    dir: path.join(process.cwd(), 'app', 'projects', 'posts'),
+    includeDraft: Config.isDevelopment,
+  })
 }
 
 export function getProjectPost(slug: string) {

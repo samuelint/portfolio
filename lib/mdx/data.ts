@@ -6,6 +6,7 @@ export type Metadata = {
   publishedAt: string
   summary: string
   image?: string
+  draft?: string
 }
 
 export type MDXData = {
@@ -42,16 +43,24 @@ function readMDXFile(filePath) {
   return parseFrontmatter(rawContent)
 }
 
-export function getMDXData(dir): MDXData[] {
+type GetMDXDataProps = {
+  dir: string
+  includeDraft?: boolean
+}
+export function getMDXData({ dir, includeDraft = false }: GetMDXDataProps): MDXData[] {
   let mdxFiles = getMDXFiles(dir)
   return mdxFiles.map((file) => {
     let { metadata, content } = readMDXFile(path.join(dir, file))
     let slug = path.basename(file, path.extname(file))
+
+    if (metadata.draft && metadata.draft != 'false' && !includeDraft) {
+      return
+    }
 
     return {
       metadata,
       slug,
       content,
     }
-  })
+  }).filter(Boolean) as MDXData[];
 }

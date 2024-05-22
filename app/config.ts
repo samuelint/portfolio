@@ -4,7 +4,8 @@ const Config = {
   twitterUrl: 'https://x.com/samuelint',
   mediumUrl: 'https://medium.com/@samuelint',
   gravatarEmail: 'samuelint@gmail.com',
-  me: 'Samuel R. Magny'
+  me: 'Samuel R. Magny',
+  isDevelopment: process.env.NODE_ENV === 'development',
 }
 
 export { Config }

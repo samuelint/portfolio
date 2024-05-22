@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { formatDate } from 'lib/date'
 import { MDXData } from 'lib/mdx'
+import { Badge } from 'lib/badge'
 
 
 interface Props {
@@ -33,6 +34,9 @@ export function PostsList({ posts, slugPrefix = '' }: Props) {
               <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
                 {post.metadata.title}
               </p>
+              <div>
+                { post.metadata.draft && <Badge className='bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'>Draft</Badge>}
+              </div>
             </div>
           </Link>
         ))}
