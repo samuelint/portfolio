@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import frontmatter from 'front-matter'
 
 export type Metadata = {
   title: string
@@ -7,6 +8,8 @@ export type Metadata = {
   summary: string
   image?: string
   draft?: string
+  tags?: string[]
+  locale?: string
 }
 
 export type MDXData = {
@@ -17,21 +20,9 @@ export type MDXData = {
 
 
 function parseFrontmatter(fileContent: string) {
-  let frontmatterRegex = /---\s*([\s\S]*?)\s*---/
-  let match = frontmatterRegex.exec(fileContent)
-  let frontMatterBlock = match![1]
-  let content = fileContent.replace(frontmatterRegex, '').trim()
-  let frontMatterLines = frontMatterBlock.trim().split('\n')
-  let metadata: Partial<Metadata> = {}
+  const content = frontmatter<Metadata>(fileContent)
 
-  frontMatterLines.forEach((line) => {
-    let [key, ...valueArr] = line.split(': ')
-    let value = valueArr.join(': ').trim()
-    value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value
-  })
-
-  return { metadata: metadata as Metadata, content }
+  return { metadata: content.attributes, content: content.body }
 }
 
 function getMDXFiles(dir) {

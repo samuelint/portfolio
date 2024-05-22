@@ -16,6 +16,7 @@ export function generateMDXMetadata({ data, slugPrefix }: GenerateMetadataProps)
     publishedAt: publishedTime,
     summary: description,
     image,
+    locale,
   } = data.metadata
   let ogImage = image ? image : `${baseUrl}/og?title=${encodeURIComponent(title)}`
 
@@ -27,6 +28,7 @@ export function generateMDXMetadata({ data, slugPrefix }: GenerateMetadataProps)
       description,
       type: 'article',
       publishedTime,
+      locale,
       url: `${baseUrl}/${slugPrefix}/${data.slug}`,
       images: [
         {
