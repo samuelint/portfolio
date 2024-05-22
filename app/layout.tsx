@@ -8,20 +8,21 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import Footer from './components/footer'
 import { baseUrl } from './sitemap'
 import { twMerge } from 'tailwind-merge'
+import { Config } from './config'
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Next.js Portfolio Starter',
-    template: '%s | Next.js Portfolio Starter',
+    default: Config.me,
+    template: `%s | ${Config.me}`,
   },
-  description: 'This is my portfolio.',
+  description: `${Config.me} Portfolio.`,
   openGraph: {
-    title: 'My Portfolio',
-    description: 'This is my portfolio.',
+    title: Config.me,
+    description: `${Config.me} Portfolio.`,
     url: baseUrl,
-    siteName: 'My Portfolio',
-    locale: 'en_US',
+    siteName: Config.sitename,
+    locale: Config.defaultLocale,
     type: 'website',
   },
   robots: {
