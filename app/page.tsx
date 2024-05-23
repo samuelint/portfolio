@@ -10,13 +10,13 @@ export default function Page() {
       <Hero />
       <HorizontalSeparator className='my-8' />
       <section>
-        <h2 className="title">Blog</h2>
-        <BlogPosts />
+        <h2 className="title">Projects</h2>
+        <ProjectsPosts />
       </section>
       <HorizontalSeparator className='my-8' />
       <section>
-        <h2 className="title">Projects</h2>
-        <ProjectsPosts />
+        <h2 className="title">Blog</h2>
+        <BlogPosts />
       </section>
     </section>
   )

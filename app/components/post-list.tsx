@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { formatDate } from 'lib/date'
 import { MDXData } from 'lib/mdx'
-import { Badge } from 'lib/badge'
+import { Badge } from 'lib/components/badge'
 
 
 interface Props {

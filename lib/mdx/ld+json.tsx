@@ -6,7 +6,7 @@ import { Config } from 'app/config'
 
 type LDJsonScriptProps = {
   data: MDXData
-  slugPrefix: string
+  slugPrefix?: string
 }
 
 export default function LD_JsonScript({ data, slugPrefix }: LDJsonScriptProps) {

@@ -2,8 +2,6 @@
 import Link from 'next/link';
 import { CalendarDaysIcon } from '@heroicons/react/24/solid'
 
-
-
 export default function GoogleCalendarReservation() {
   return (
   <Link 

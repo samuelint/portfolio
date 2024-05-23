@@ -8,6 +8,10 @@ import { CustomLink } from './components/link'
 import { RoundedImage } from './components/image'
 import { Table } from './components/table'
 import { QuebecFlag } from './components/quebec-flag'
+import { Timeline } from './components/timeline'
+import { WeightedtItem, WeightedtItemsSection } from './components/weighted-items'
+import { SideBySide } from './components/side-by-side'
+import { Badge } from 'lib/components/badge'
 
 let components = {
   h1: createHeading(1),
@@ -16,12 +20,17 @@ let components = {
   h4: createHeading(4),
   h5: createHeading(5),
   h6: createHeading(6),
-  Image: RoundedImage,
+  RoundedImage: RoundedImage,
   a: CustomLink,
   code: Code,
   Table,
   YouTube,
   QuebecFlag,
+  Timeline,
+  WeightedtItem,
+  WeightedtItemsSection,
+  SideBySide,
+  Badge,
 }
 
 export function CustomMDX(props) {
