@@ -38,18 +38,6 @@
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"
-    },
-    {
-      "name": "Storybook Debug",
-      "type": "node-terminal",
-      "request": "launch",
-      "command": "pnpm run storybook",
-      "internalConsoleOptions": "openOnFirstSessionStart",
-      "serverReadyAction": {
-        "pattern": "Local:.+(https?://[^:]+:[0-9]+)",
-        "uriFormat": "%s",
-        "action": "debugWithChrome"
-      }
     }
   ]
 }

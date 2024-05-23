@@ -29,29 +29,41 @@ function getMDXFiles(dir) {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
 }
 
-function readMDXFile(filePath) {
-  let rawContent = fs.readFileSync(filePath, 'utf-8')
-  return parseFrontmatter(rawContent)
+function readMDXFile(filePath): string {
+  return fs.readFileSync(filePath, 'utf-8')
 }
 
-type GetMDXDataProps = {
+type GetDirectoryMDXDataProps = {
   dir: string
   includeDraft?: boolean
 }
-export function getMDXData({ dir, includeDraft = false }: GetMDXDataProps): MDXData[] {
+export function getDirectoryMDXData({ dir, includeDraft = false }: GetDirectoryMDXDataProps): MDXData[] {
   let mdxFiles = getMDXFiles(dir)
-  return mdxFiles.map((file) => {
-    let { metadata, content } = readMDXFile(path.join(dir, file))
-    let slug = path.basename(file, path.extname(file))
+  return mdxFiles
+    .map((file) => getPathMDXData(path.join(dir, file)))
+    .filter(({ metadata }) => {
+      if (includeDraft || !metadata?.draft) {
+        return true;
+      }
+      return metadata.draft === 'true';
+    });
+}
 
-    if (metadata.draft && metadata.draft != 'false' && !includeDraft) {
-      return
-    }
+export function getPathMDXData(filePath: string): MDXData {
+  const slug = path.basename(filePath, path.extname(filePath))
+  return getMDXData({ mdxContent: readMDXFile(filePath), slug })
+}
 
-    return {
-      metadata,
-      slug,
-      content,
-    }
-  }).filter(Boolean) as MDXData[];
+type GetMDXDataProps = {
+  mdxContent: string
+  slug: string
+}
+export function getMDXData({ mdxContent, slug }: GetMDXDataProps): MDXData {
+  let { metadata, content } = parseFrontmatter(mdxContent)
+
+  return {
+    metadata,
+    slug,
+    content,
+  }
 }

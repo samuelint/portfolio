@@ -1,13 +1,13 @@
 import { Config } from 'app/config'
-import { getMDXData } from 'lib/mdx'
+import { getDirectoryMDXData } from 'lib/mdx'
 import path from 'path'
 
 type GetBlogPostProps  = {
   includeDraft?: boolean
 }
 
-export function getBlogPosts({ includeDraft = Config.isDevelopment }: GetBlogPostProps = {}) {
-  return getMDXData({
+export function getBlogPosts({ includeDraft = Config.includeDraft }: GetBlogPostProps = {}) {
+  return getDirectoryMDXData({
     dir: path.join(process.cwd(), 'app', 'blog', 'posts'),
     includeDraft,
   })

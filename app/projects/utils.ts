@@ -1,5 +1,5 @@
 import { Config } from 'app/config'
-import { getMDXData } from 'lib/mdx'
+import { getDirectoryMDXData } from 'lib/mdx'
 import path from 'path'
 
 type GetProjectPostProps  = {
@@ -7,8 +7,8 @@ type GetProjectPostProps  = {
 }
 
 
-export function getProjectPosts({ includeDraft = Config.isDevelopment }: GetProjectPostProps = {}) {
-  return getMDXData({
+export function getProjectPosts({ includeDraft = Config.includeDraft }: GetProjectPostProps = {}) {
+  return getDirectoryMDXData({
     dir: path.join(process.cwd(), 'app', 'projects', 'posts'),
     includeDraft,
   })

@@ -8,7 +8,7 @@ const Config = {
   mediumUrl: 'https://medium.com/@samuelint',
   gravatarEmail: 'samuelint@gmail.com',
   me: 'Samuel Magny',
-  isDevelopment: process.env.NODE_ENV === 'development',
+  includeDraft: process.env.FF_INCLUDE_DRAFT === 'true' || false,
 }
 
 export { Config }

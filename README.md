@@ -14,6 +14,7 @@ Includes:
 ## Development Setup
 * Install `pnpm` by running `npm install -g pnpm`
 * Install project dependencies by running `pnpm install`
+* Add a new `.env` following `.env.example`
 
 ## Local Development Process
 To run the portfolio locally, follow these steps:
