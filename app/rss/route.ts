@@ -1,9 +1,9 @@
-import { getLocalBlogPosts } from 'app/blog/utils'
+import { getBlogPosts } from 'app/blog/utils'
 import { FeedBuilder } from './feed.builder'
 import { Config } from '../config'
 
 export async function GET() {
-  let allBlogs = await getLocalBlogPosts({ includeDraft: false })
+  let allBlogs = await getBlogPosts()
 
   const builder = new FeedBuilder()
   builder.addPosts({ posts: allBlogs, slugPrefix: '/blog' })

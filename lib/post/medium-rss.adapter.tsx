@@ -21,6 +21,7 @@ export function toPost({ item }: ToPostArgs): Post | null {
         externalLink: url.href,
       },
       slug,
+      content: item['content:encoded'],
       Content: <div dangerouslySetInnerHTML={{__html: item['content:encoded'] }}></div>
     }
   } catch (error) {

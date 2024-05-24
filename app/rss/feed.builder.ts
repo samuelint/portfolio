@@ -1,4 +1,4 @@
-import { Post } from "@/lib/post.type";
+import { Post } from "@/lib/post";
 import { Config } from "app/config";
 import { Feed } from "feed";
 import Parser from 'rss-parser';

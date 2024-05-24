@@ -15,6 +15,7 @@ export type PostMetadata = {
 export type Post = {
   metadata: PostMetadata
   slug: string
+  content: string
   Content: ReactNode
 }
 

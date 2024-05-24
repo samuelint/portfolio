@@ -16,6 +16,6 @@ export class LocalMdxPostGetter implements PostGetter {
       includeDraft: this.args.includeDraft,
     })
 
-    return posts.map(({content, ...data}) => ({...data, Content: <CustomMDX source={content} />}))
+    return posts.map(({content, ...data}) => ({...data, content, Content: <CustomMDX source={content} />}))
   }
 }

@@ -1,10 +1,10 @@
-import { getLocalBlogPosts } from 'app/blog/utils'
+import { getBlogPosts } from 'app/blog/utils'
 import { Config } from './config'
 
 export const baseUrl = Config.baseUrl
 
 export default async function sitemap() {
-  let blogs = getLocalBlogPosts().map((post) => ({
+  let blogs = (await getBlogPosts()).map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: post.metadata.publishedAt,
   }))
