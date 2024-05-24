@@ -16,7 +16,7 @@ const Config = {
     title: `${me}`,
     url: `${baseUrl}/rss`,
     description: `This is ${me} RSS feed`,
-    externalUrls: ['https://medium.com/feed/@samuelint']
+    myMediumFeed: 'https://medium.com/feed/@samuelint',
   }
 }
 

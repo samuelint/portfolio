@@ -1,10 +1,16 @@
 import { Config } from "app/config";
 import { Feed } from "feed";
 import { MDXData } from "lib/mdx";
+import Parser from 'rss-parser';
 
-type AddPostArgs = {
+export type RssPost = MDXData
+type AddRssPostsArgs = {
   slugPrefix: string
-  posts: MDXData[]
+  posts: RssPost[]
+}
+type AddRssPostArgs = {
+  slugPrefix: string
+  post: RssPost
 }
 
 export class FeedBuilder {
@@ -16,27 +22,43 @@ export class FeedBuilder {
       description: Config.rss.description,
       id: Config.baseUrl,
       link: Config.rss.url,
-      favicon: `${Config.baseUrl}/favicon.ico`,
-      copyright: `All rights reserved 2024, ${Config.me}`,
-      author: {
-        name: Config.me,
-        email: Config.email,
-        link: Config.baseUrl,
-      }
+      copyright: Config.me,
     });
   }
 
-  public addPosts({ posts, slugPrefix }: AddPostArgs): this {
-    posts.forEach((post) => {
+  public async addMediumFeed(url: string): Promise<this> {
+    const parser = new Parser()
+    const feed = await parser.parseURL(url)
+
+    feed.items.forEach((item) => {
       this.feed.addItem({
-        title: post.metadata.title,
-        link: `${Config.baseUrl}${slugPrefix}/${post.slug}`,
-        id: `${Config.baseUrl}${slugPrefix}/${post.slug}`,
-        date: new Date(post.metadata.publishedAt),
-        description: post.metadata.summary || '',
-        content: post.content,
+        title: `${item.title}`,
+        link: `${item.link}`,
+        id: item.link,
+        date: item.pubDate ? new Date(item.pubDate) : new Date(),
+        content: item['content:encoded'],
+        description: item['content:encodedSnippet'],
       })
-    });
+    })
+
+    return this;
+  }
+
+  public addPost({ post, slugPrefix }: AddRssPostArgs): this {
+    this.feed.addItem({
+      title: post.metadata.title,
+      link: `${Config.baseUrl}${slugPrefix}/${post.slug}`,
+      id: `${Config.baseUrl}${slugPrefix}/${post.slug}`,
+      date: new Date(post.metadata.publishedAt),
+      description: post.metadata.summary || '',
+      content: post.content,
+    })
+
+    return this
+  }
+
+  public addPosts({ posts, slugPrefix }: AddRssPostsArgs): this {
+    posts.forEach((post) => this.addPost({ post, slugPrefix }));
 
     return this
   }
