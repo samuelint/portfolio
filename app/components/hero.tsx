@@ -12,7 +12,16 @@ export function Hero() {
         <span>{ Config.me }</span><QuebecIcon />
       </h1>
       <MySocialMedia />
-      <GoogleCalendarReservation />
+      <GoogleCalendarReservation>
+        <span>Schedule a meeting with me</span>
+        <span>/</span>
+        <span>Planifier une rencontre avec moi</span>
+      </GoogleCalendarReservation>
+      <p>
+        Hello! I'm Samuel Magny, a software development consultant. 
+        Do you have a project you want to discuss or need tech advice? 
+        Let's schedule a time that works for both of us. I'm flexible and ready to tackle any software challenge you have.
+      </p>
       <p>
         Bonjour! Je suis Samuel Magny, consultant en development logiciel. 
         Vous avez un projet dont vous voulez discuter ou besoin de conseils tech? 
