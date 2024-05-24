@@ -1,11 +1,16 @@
 import Link from 'next/link'
+import { PropsWithChildren } from 'react'
 
-export function CustomLink(props) {
+type Props = PropsWithChildren & {
+  href: string
+}
+
+export function CustomLink(props: Props) {
   let href = props.href
 
   if (href.startsWith('/')) {
     return (
-      <Link href={href} {...props}>
+      <Link {...props} href={href}>
         {props.children}
       </Link>
     )

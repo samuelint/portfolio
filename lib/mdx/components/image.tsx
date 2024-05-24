@@ -1,9 +1,11 @@
-import Image from 'next/image'
+import Image, { ImageProps } from 'next/image'
 
-export function RoundedImage(props) {
+type Props = ImageProps
+
+export function RoundedImage(props: Props) {
   return <Image 
+    {...props} 
     alt={props.alt} 
     className="rounded-lg" 
-    {...props} 
   />
 }

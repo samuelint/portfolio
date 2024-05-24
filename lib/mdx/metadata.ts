@@ -1,8 +1,8 @@
-import { MDXData } from "./data"
+import { Post } from "../post/post.type"
 import { baseUrl } from 'app/sitemap'
 
 type GenerateMetadataProps = {
-  data?: MDXData
+  data?: Post
   slugPrefix: string
 }
 

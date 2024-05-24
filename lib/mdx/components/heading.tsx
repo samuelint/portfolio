@@ -1,4 +1,4 @@
-import { createElement } from "react"
+import { PropsWithChildren, createElement } from "react"
 
 function slugify(str) {
   return str
@@ -12,8 +12,10 @@ function slugify(str) {
 }
 
 
+type Props = PropsWithChildren & { }
+
 export function createHeading(level) {
-  const Heading = ({ children }) => {
+  const Heading = ({ children }: Props) => {
     let slug = slugify(children)
     return createElement(
       `h${level}`,

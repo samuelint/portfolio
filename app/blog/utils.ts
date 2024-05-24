@@ -1,18 +1,17 @@
+import { LocalMdxPostGetter, MediumRssPostGetter, Post, PostGetterBuilder } from '@/lib/post'
 import { Config } from 'app/config'
-import { getDirectoryMDXData } from 'lib/mdx'
-import path from 'path'
 
-type GetBlogPostProps  = {
-  includeDraft?: boolean
+
+const blogPostGetter = new PostGetterBuilder()
+  .add(new LocalMdxPostGetter({ path: ['app', 'blog', 'posts'], includeDraft: Config.includeDraft }))
+  .add(new MediumRssPostGetter({ url: Config.rss.myMediumFeed }))
+
+export async function getBlogPosts(): Promise<Post[]> {
+  return blogPostGetter.get()
 }
 
-export function getBlogPosts({ includeDraft = Config.includeDraft }: GetBlogPostProps = {}) {
-  return getDirectoryMDXData({
-    dir: path.join(process.cwd(), 'app', 'blog', 'posts'),
-    includeDraft,
-  })
-}
+export async function findBlogPost(slug: string): Promise<Post | undefined> {
+  const posts = await getBlogPosts()
 
-export function getBlogPost(slug: string) {
-  return getBlogPosts({ includeDraft: true }).find((post) => post.slug === slug)
+  return posts.find((post) => post.slug === slug)
 }

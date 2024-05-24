@@ -18,14 +18,14 @@ export function Hero() {
         <span>Planifier une rencontre avec moi</span>
       </GoogleCalendarReservation>
       <p>
-        Hello! I'm Samuel Magny, a software development consultant. 
+        {`Hello! I'm Samuel Magny, a software development consultant. 
         Do you have a project you want to discuss or need tech advice? 
-        Let's schedule a time that works for both of us. I'm flexible and ready to tackle any software challenge you have.
+        Let's schedule a time that works for both of us. I'm flexible and ready to tackle any software challenge you have.`}
       </p>
       <p>
-        Bonjour! Je suis Samuel Magny, consultant en development logiciel. 
+        {`Bonjour! Je suis Samuel Magny, consultant en development logiciel. 
         Vous avez un projet dont vous voulez discuter ou besoin de conseils tech? 
-        Planifions un moment qui nous convient à tous les deux. Je suis flexible et prêt à m'attaquer à n'importe quel défi logiciel que vous avez.
+        Planifions un moment qui nous convient à tous les deux. Je suis flexible et prêt à m'attaquer à n'importe quel défi logiciel que vous avez.`}
       </p>
     </div>
   )

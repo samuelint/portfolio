@@ -1,11 +1,9 @@
-import { notFound } from 'next/navigation'
-
 import { baseUrl } from 'app/sitemap'
-import { MDXData } from './data'
 import { Config } from 'app/config'
+import { Post } from '../post/post.type'
 
 type LDJsonScriptProps = {
-  data: MDXData
+  data: Post
   slugPrefix?: string
 }
 

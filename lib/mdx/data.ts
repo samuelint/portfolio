@@ -1,23 +1,14 @@
 import fs from 'fs'
 import path from 'path'
 import frontmatter from 'front-matter'
+import { Post, PostMetadata } from '../post/post.type'
 
-export type Metadata = {
-  title: string
-  publishedAt: string
-  summary: string
-  image?: string
-  draft?: string
-  tags?: string[]
-  locale?: string
-}
-
+export type Metadata = PostMetadata
 export type MDXData = {
-  metadata: Metadata
+  metadata: PostMetadata
   slug: string
   content: string
 }
-
 
 function parseFrontmatter(fileContent: string) {
   const content = frontmatter<Metadata>(fileContent)

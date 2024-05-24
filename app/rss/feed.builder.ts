@@ -1,9 +1,9 @@
+import { Post } from "@/lib/post.type";
 import { Config } from "app/config";
 import { Feed } from "feed";
-import { MDXData } from "lib/mdx";
 import Parser from 'rss-parser';
 
-export type RssPost = MDXData
+export type RssPost = Post
 type AddRssPostsArgs = {
   slugPrefix: string
   posts: RssPost[]

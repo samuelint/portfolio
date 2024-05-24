@@ -6,7 +6,6 @@ import { createHeading } from './components/heading'
 import { Code } from './components/code'
 import { CustomLink } from './components/link'
 import { RoundedImage } from './components/image'
-import { Table } from './components/table'
 import { QuebecFlag } from './components/quebec-flag'
 import { Timeline } from './components/timeline'
 import { WeightedtItem, WeightedtItemsSection } from './components/weighted-items'
@@ -23,7 +22,6 @@ let components = {
   RoundedImage: RoundedImage,
   a: CustomLink,
   code: Code,
-  Table,
   YouTube,
   QuebecFlag,
   Timeline,
@@ -37,6 +35,7 @@ export function CustomMDX(props) {
   return (
     <MDXRemote
       {...props}
+      // eslint-disable-next-line react/prop-types
       components={{ ...components, ...(props.components || {}) }}
     />
   )
