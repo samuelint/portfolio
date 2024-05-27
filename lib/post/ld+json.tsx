@@ -1,6 +1,7 @@
 import { baseUrl } from 'app/sitemap'
 import { Config } from 'app/config'
 import { Post } from '../post/post.type'
+import { getSEODescription } from './dynamic-summary'
 
 type LDJsonScriptProps = {
   data: Post
@@ -8,6 +9,7 @@ type LDJsonScriptProps = {
 }
 
 export default function LD_JsonScript({ data, slugPrefix }: LDJsonScriptProps) {
+  const description = getSEODescription(data)
   return (
     <script
         type="application/ld+json"
@@ -19,10 +21,9 @@ export default function LD_JsonScript({ data, slugPrefix }: LDJsonScriptProps) {
             headline: data.metadata.title,
             datePublished: data.metadata.publishedAt,
             dateModified: data.metadata.publishedAt,
-            description: data.metadata.summary,
+            description,
             image: data.metadata.image
-              ? `${baseUrl}${data.metadata.image}`
-              : `/og?title=${encodeURIComponent(data.metadata.title)}`,
+              && `${baseUrl}${data.metadata.image}`,
             url: `${baseUrl}${slugPrefix}/${data.slug}`,
             author: {
               '@type': 'Person',

@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
 import { formatDate } from 'lib/date'
-import LD_JsonScript from 'lib/mdx/ld+json'
 import { Post } from '../post/post.type'
 import Link from 'next/link'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/solid'
+import LD_JsonScript from '../post/ld+json'
 
 
 type Features = {

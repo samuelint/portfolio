@@ -1,8 +1,9 @@
+import { Config } from '../config'
 import { BlogPosts } from './posts'
 
 export const metadata = {
   title: 'Blog',
-  description: 'Read my blog.',
+  description: `${Config.me} Blog`,
 }
 
 export default function Page() {

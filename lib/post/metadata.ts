@@ -1,12 +1,13 @@
 import { Post } from "../post/post.type"
 import { baseUrl } from 'app/sitemap'
+import { getSEODescription } from "./dynamic-summary"
 
 type GenerateMetadataProps = {
   data?: Post
   slugPrefix: string
 }
 
-export function generateMDXMetadata({ data, slugPrefix }: GenerateMetadataProps) {
+export function generatePostMetadata({ data, slugPrefix }: GenerateMetadataProps) {
   if (!data) {
     return
   }
@@ -14,11 +15,16 @@ export function generateMDXMetadata({ data, slugPrefix }: GenerateMetadataProps)
   let {
     title,
     publishedAt: publishedTime,
-    summary: description,
     image,
     locale,
   } = data.metadata
-  let ogImage = image ? image : `${baseUrl}/og?title=${encodeURIComponent(title)}`
+  const images: string[] = []
+
+  if(image) {
+    images.push()
+  }
+
+  const description = getSEODescription(data)
 
   return {
     title,
@@ -30,17 +36,15 @@ export function generateMDXMetadata({ data, slugPrefix }: GenerateMetadataProps)
       publishedTime,
       locale,
       url: `${baseUrl}/${slugPrefix}/${data.slug}`,
-      images: [
-        {
-          url: ogImage,
-        },
-      ],
+      images: images.map((url) => ({
+        url,
+      })),
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [ogImage],
+      images,
     },
   }
 }

@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation'
 
-import { generateMDXMetadata, MDXArticle } from 'lib/mdx'
+import { MDXArticle } from 'lib/mdx'
 import { findBlogPost, getBlogPosts } from '../utils'
+import { generatePostMetadata } from '@/lib/post'
 
 type Props = {
   params: {
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: Props) {
   let post = await findBlogPost(params.slug.join('/'))
   if(!post) return;
 
-  return generateMDXMetadata({ data: post, slugPrefix: 'blog' })
+  return generatePostMetadata({ data: post, slugPrefix: 'blog' })
 }
 
 export default async function Blog({ params }: Props) {
