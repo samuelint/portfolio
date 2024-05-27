@@ -11,6 +11,7 @@ const Config = {
   gravatarEmail: 'samuelint@gmail.com',
   email: 'samuel@smagny.com',
   me,
+  headline: 'If you stay the same you are failing behind.',
   includeDraft: process.env.FF_INCLUDE_DRAFT === 'true' || false,
   rss: {
     title: `${me}`,

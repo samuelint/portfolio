@@ -11,6 +11,7 @@ export function Hero() {
       <h1 className="text-4xl font-semibold tracking-tighter text-center flex justify-center w-full gap-4">
         <span>{ Config.me }</span><QuebecIcon />
       </h1>
+      <p className='text-center flex justify-center'>{ Config.headline }</p>
       <MySocialMedia />
       <GoogleCalendarReservation>
         <span>Schedule a meeting with me</span>
