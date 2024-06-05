@@ -3,8 +3,17 @@ import { MyAvatar } from './my-avatar';
 import { MySocialMedia } from './my-social-media';
 import { Config } from 'app/config';
 import { QuebecIcon } from 'lib/icon/quebec';
+import { MDXArticle } from '@/lib/mdx';
+import { LocalMdxPostGetter, PostGetterBuilder } from '@/lib/post';
 
-export function Hero() {
+
+const heroPostsGetter = new PostGetterBuilder()
+  .add(new LocalMdxPostGetter({ path: ['app', 'hero'] }))
+
+  
+export async function Hero() {
+  const heros = await heroPostsGetter.get()
+
   return (
     <div className='w-full flex flex-col justify-center gap-4'>
       <MyAvatar />
@@ -13,21 +22,12 @@ export function Hero() {
       </h1>
       <p className='text-center flex justify-center'>{ Config.headline }</p>
       <MySocialMedia />
+      { heros.map((hero, index) => (<MDXArticle key={index} features={{ showTitle: false, showDate: false }} data={hero}/>))}
       <GoogleCalendarReservation>
         <span>Schedule a meeting with me</span>
         <span>/</span>
         <span>Planifier une rencontre avec moi</span>
       </GoogleCalendarReservation>
-      <p>
-        {`Hello! I'm Samuel Magny, a software development consultant. 
-        Do you have a project you want to discuss or need tech advice? 
-        Let's schedule a time that works for both of us. I'm flexible and ready to tackle any software challenge you have.`}
-      </p>
-      <p>
-        {`Bonjour! Je suis Samuel Magny, consultant en development logiciel. 
-        Vous avez un projet dont vous voulez discuter ou besoin de conseils tech? 
-        Planifions un moment qui nous convient à tous les deux. Je suis flexible et prêt à m'attaquer à n'importe quel défi logiciel que vous avez.`}
-      </p>
     </div>
   )
 }

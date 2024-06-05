@@ -34,7 +34,7 @@ export function MDXArticle({ data, slugPrefix, features = DEFAULT_FEATURES }: Ar
       {features.showTitle && <h1 className="title">
         {data.metadata.title}
       </h1>}
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
+      <div className="flex justify-between items-center mb-8 text-sm">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {features.showDate && formatDate(data.metadata.publishedAt)}
         </p>

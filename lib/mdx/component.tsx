@@ -9,8 +9,9 @@ import { RoundedImage } from './components/image'
 import { QuebecFlag } from './components/quebec-flag'
 import { Timeline } from './components/timeline'
 import { WeightedtItem, WeightedtItemsSection } from './components/weighted-items'
-import { SideBySide } from './components/side-by-side'
+import { Buzzwords } from './components/buzzwords'
 import { Badge } from 'lib/components/badge'
+import { Emphasis } from './components/emphasis'
 
 let components = {
   h1: createHeading(1),
@@ -27,8 +28,9 @@ let components = {
   Timeline,
   WeightedtItem,
   WeightedtItemsSection,
-  SideBySide,
+  Buzzwords,
   Badge,
+  Emphasis,
 }
 
 export function CustomMDX(props) {
