@@ -5,6 +5,7 @@ import { Config } from 'app/config';
 import { QuebecIcon } from 'lib/icon/quebec';
 import { MDXArticle } from '@/lib/mdx';
 import { LocalMdxPostGetter, PostGetterBuilder } from '@/lib/post';
+import { ScheduleWithMe } from './schedule-with-me';
 
 
 const heroPostsGetter = new PostGetterBuilder()
@@ -22,12 +23,8 @@ export async function Hero() {
       </h1>
       <p className='text-center flex justify-center'>{ Config.headline }</p>
       <MySocialMedia />
+      <ScheduleWithMe />
       { heros.map((hero, index) => (<MDXArticle key={index} features={{ showTitle: false, showDate: false }} data={hero}/>))}
-      <GoogleCalendarReservation>
-        <span>Schedule a meeting with me</span>
-        <span>/</span>
-        <span>Planifier une rencontre avec moi</span>
-      </GoogleCalendarReservation>
     </div>
   )
 }
