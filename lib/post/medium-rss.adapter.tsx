@@ -11,18 +11,20 @@ export function toPost({ item }: ToPostArgs): Post | null {
     const slug = `medium${url.pathname}`
     const categories = item.categories ?? []
 
+    const content = item.content ?? item['content:encoded'] ?? ''
+    const summary = item.contentSnippet ??item['content:encodedSnippet'] ?? ''
     return {
       metadata: {
         title: item.title ?? '',
         publishedAt: item.pubDate || new Date().toISOString(),
-        summary: item['content:encodedSnippet'],
+        summary,
         tags: categories,
         source: 'Medium',
         externalLink: url.href,
       },
       slug,
-      content: item['content:encoded'],
-      Content: <div dangerouslySetInnerHTML={{__html: item['content:encoded'] }}></div>
+      content,
+      Content: <div dangerouslySetInnerHTML={{__html: content }}></div>
     }
   } catch (error) {
     console.error('Error adapting medium rss post', error)

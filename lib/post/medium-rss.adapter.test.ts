@@ -66,16 +66,44 @@ test(`given item with content:encodedSnippet,
   expect(result?.metadata.summary).toEqual('asd')
 })
 
-test(`given item without content:encodedSnippet,
+test(`given item wthh content and no content:encodedSnippet,
       when adapting,
-      then post summary is not defined`, () => {
+      then post content is content`, () => {
+  const item = {
+    link,
+    content: 'allo'
+  } as Item
+
+  const result = toPost({ item })
+
+  expect(result?.content).toEqual('allo')
+})
+
+test(`given item wthh content and content:encodedSnippet,
+      when adapting,
+      then post content is content (not encodedSnippet)`, () => {
+  const item = {
+    link,
+    content: 'allo',
+    'content:encodedSnippet': 'asd',
+  } as Item
+
+  const result = toPost({ item })
+
+  expect(result?.content).toEqual('allo')
+})
+
+
+test(`given item without content:encodedSnippet or content,
+      when adapting,
+      then post summary is empty string`, () => {
   const item = {
     link,
   } as Item
 
   const result = toPost({ item })
 
-  expect(result?.metadata.summary).toBeUndefined()
+  expect(result?.metadata.summary).toEqual('')
 })
 
 test(`when adapting,
